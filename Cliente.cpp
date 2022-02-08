@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Cliente::Cliente(string fullName, string address, string rfc, int phone, string email) {
+Cliente::Cliente(string fullName, string address, string rfc, string phone, string email) {
 	m_fullName = fullName;
 	m_address = address;
 	m_rfc = rfc;
@@ -22,7 +22,7 @@ string Cliente::getRfc() {
 	return m_rfc;
 }
 
-int Cliente::getPhone() {
+string Cliente::getPhone() {
 	return m_phone;
 }
 

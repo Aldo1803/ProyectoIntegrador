@@ -1,18 +1,92 @@
 
-
+#include "Cliente.h"
+#include "Venta.h"
+#include "Producto.h"
 #include <iostream>
+#include <fstream>
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	fstream myFile;
+	int opcion = 0;
+
+	cout << "Opciones" << "\n1 Agregar cliente" << "\n2 Agregar productos" <<
+		"\n3 Agregar venta" << "\n4 Facturar" << endl;
+	cin >> opcion;
+	if (opcion == 1)
+	{
+		string nombre, direccion, rfc, telefono, email;
+		cin.ignore();
+		cout << "Nombre completo: ";
+		
+		getline(cin, nombre);
+		cout << "\nDireccion: ";
+		
+		getline(cin, direccion);
+		cout << "\nRFC: ";
+		
+		getline(cin, rfc);
+		cout << "\nTelefono: ";
+		
+		getline(cin, telefono);
+		cout << "\nEmail: ";
+		
+		getline(cin, email);
+		Cliente client(nombre, direccion, rfc, telefono, email);
+		myFile.open("clients.csv");
+		myFile << client.getName() + "," + client.getAddress() + "," +
+			client.getRfc() + "," + client.getPhone() + "," + client.getEmail();
+		myFile.close();
+		cout << "\n Cliente agregado" << endl;
+		cout << "******************************" << endl;
+		client.print();
+
+
+
+	}
+	else if (opcion == 2) {
+		int continuar = 1;
+		while (continuar == 1)
+		{
+			string nombre, descripcion;
+			double precio;
+
+			cin.ignore();
+
+			cout << "Nombre del producto: " << endl;
+			getline(cin, nombre);
+			cout << "Descripcion del producto: " << endl;
+			getline(cin, descripcion);
+			cout << "Precio del producto: " << endl;
+			cin>>precio;
+			Producto product(nombre, descripcion, precio);
+			myFile.open("products.csv");
+			myFile << product.getName() << "," << product.getDescription() << "," << product.getPrice();
+			myFile.close();
+			cout << "\nProducto agregado" << endl;
+			cout << "******************************" << endl;
+			product.print();
+			cout << "Agregar otro producto? si(1) no(0)" << endl;
+			cin >> continuar;
+
+
+			
+		}
+
+	}
+	else if (opcion == 3) {
+
+
+	}
+	else if (opcion == 4) {
+
+	}
+	else {
+		cout << "No se selecciono una opcion valida";
+	}
+	
+	return 0;
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
